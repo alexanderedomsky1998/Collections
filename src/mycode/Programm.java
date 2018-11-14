@@ -6,16 +6,18 @@ import java.util.Iterator;
 public class Programm {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		MyArrayList<Integer> a = new MyArrayList<Integer>();
-		a.add_To_Head(5);
-		a.add_To_Head(3);
-		a.add_To_Head(7);
-		a.add_To_Head(1);
+		a.add(5);
+		a.add(3);
+		a.add(7);
+		a.add(1);
+		a.remove(1);
 		Iterator<Integer> it = a.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next());
 		}
-		//a.remove(1);
-		//System.out.println(a.get(1));
-		//a.print();
+		
+		for(Integer i: a) {
+			System.out.println(i);
+		}
 	}
 }

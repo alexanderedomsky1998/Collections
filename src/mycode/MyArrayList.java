@@ -14,42 +14,32 @@ public class Node<T>{
 
 	}
 }
-Node<T> Head;
-Node<T> Tail;
-Node<T> curr;
+Node<T> head;
+Node<T> tail;
 int size;
 MyArrayList(){
-	curr = new Node<T>();
-	Head = new Node<T>();
-	Tail = new Node<T>();
-	Head.next = Tail;
-	Tail.prev = Head;
-	Head.obj = null;
-	Tail.obj = null;
-	curr = Head;
+	head = new Node<T>();
+	tail = new Node<T>();
+	head.next = tail;
+	tail.prev = head;
+	head.obj = null;
+	tail.obj = null;
 	size = 0;
 }
-void add_To_Head(T val) {
+void add(T val) {
 	Node<T> tmp = new Node();
 	tmp.obj = val;
-	tmp.prev = Head;
-	tmp.next = Head.next;
-	Head.next.prev = tmp;
-	Head.next = tmp;
+	tmp.prev = tail.prev;
+	tmp.next = tail;
+	tail.prev.next = tmp;
+	tail.prev = tmp;
 	size++;
 }
-void print() {
-	Node<T> tmp = Head.next;
-	while(tmp.obj!=null) {
-		System.out.println(tmp.obj);
-		tmp = tmp.next;
-	}
-}
-int getsize() {
+int getSize() {
 	return size;
 }
 void remove(int index){
-	Node<T> tmp = Head.next;
+	Node<T> tmp = head.next;
 	for(int i = 0;i < index; i++) {
 		tmp = tmp.next;
 	}
@@ -58,7 +48,7 @@ void remove(int index){
 	size--;
 }
 boolean contains(T item) {
-	Node<T> tmp = Head.next;
+	Node<T> tmp = head.next;
 	for(int i = 0;i < size; i++) {
 		if(tmp.obj==item) {
 			return true;
@@ -68,7 +58,7 @@ boolean contains(T item) {
 	return false;
 }
 T get(int index) {
-	Node<T> tmp = Head.next;
+	Node<T> tmp = head.next;
 	for(int i = 0;i < index; i++) {
 		tmp = tmp.next;
 	}
@@ -89,7 +79,7 @@ public Iterator<T> iterator() {
 		@Override
 		public T next() {
 			// TODO Auto-generated method stub
-		  Node<T> tmp = Head;
+		  Node<T> tmp = head;
 		  index++;
 		  for(int i = 0; i < index; i++) {
 			  tmp = tmp.next;
